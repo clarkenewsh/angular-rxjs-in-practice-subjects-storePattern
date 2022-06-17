@@ -843,7 +843,9 @@ RxJS In Practice Course Notes:
         - •	The replaySubject is going to replay the complete observable, emitting all of the values emitted. It does not need to complete like the asyncSubject.
 
         - The Course Store Pattern implemented in the tutorial video is a great example and use case of subject and Rxjs in general - refer to the store.service.ts file to see the implementation of the store. 
+        
+        - Force completion of long running observables using the 'First' & 'Take' Operators.
 
-    Conclusions
-        - ** notes stored in own repo store-finished.
+        - withLatestFrom RxJs Operator is used to combine multiple observables together by taking the latest value emitted from each observable and providing the emitted value to the next operator in the chain or subscribe method as a 'tuple value' (A Tuple is an array with special properties and considerations: The number of elements of the array i s fixed ( aka immutable ).
+
     
