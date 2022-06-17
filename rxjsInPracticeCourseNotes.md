@@ -840,7 +840,9 @@ RxJS In Practice Course Notes:
 
         - •	AsyncSubject is ideal for using with long running calculations that is emitting a lot of values over time. It then emits the last value emitted after calculating all off the emitted values and the subject is then complete.  
 
-        - •	The replaySubject is going to replay the complete observable, emmiting all of the values emitted. It does not need to complete like the asyncSubject.
+        - •	The replaySubject is going to replay the complete observable, emitting all of the values emitted. It does not need to complete like the asyncSubject.
+
+        - The Course Store Pattern implemented in the tutorial video is a great example and use case of subject and Rxjs in general - refer to the store.service.ts file to see the implementation of the store. 
 
     Conclusions
         - ** notes stored in own repo store-finished.
