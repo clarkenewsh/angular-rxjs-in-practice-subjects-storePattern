@@ -16,8 +16,17 @@ RxJS In Practice Course Notes:
             - Subject: is equivalent to an EventEmitter, and the only way of multicasting a value or event to multiple Observers.
             -Schedulers: are centralized dispatchers to control concurrency, allowing us to coordinate when computation happens on e.g. setTimeout or requestAnimationFrame or others.
         
-        - Angular Uni Blog Resource - https://blog.angular-university.io/tag/rxjs/
-        - Angular Uni RxJs E-Books - 
+    
+        - Additional Learning Resources:
+            - RxJs Docs - https://rxjs.dev/guide/overview
+            - Angular Docs - https://angular.io/guide/observables
+            - RxJs Book - https://softchris.github.io/books/rxjs/why-rxjs/
+            - Angular Uni Blog RxJs- https://blog.angular-university.io/tag/rxjs/
+            - ng-conf Youtube - https://www.youtube.com/c/ngconfonline/search?query=rxjs
+            - Angular Uni Youtube - https://www.youtube.com/channel/UC3cEGKhg3OERn-ihVsJcb7A/search?query= 
+            - Decoded Frontend YouTube - https://www.youtube.com/c/DecodedFrontend/search?query=rxjs
+
+
 
         - Streams of values examples:
 
