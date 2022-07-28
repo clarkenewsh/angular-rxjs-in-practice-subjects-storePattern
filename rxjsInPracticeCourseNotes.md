@@ -1,6 +1,8 @@
 RxJS In Practice Course Notes:
 
     RxJS Intro:
+        - Observables provide support for passing messages between parts of your application. They are used frequently in Angular and are a technique for event handling, asynchronous programming, and handling multiple values.The observer pattern is a software design pattern in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of state changes. This pattern is similar (but not identical) to the publish/subscribe design pattern.Observables are declarative —that is, you define a function for publishing values, but it is not executed until a consumer subscribes to it. The subscribed consumer then receives notifications until the function completes, or until they unsubscribe. An observable can deliver multiple values of any type —literals, messages, or events, depending on the context. The API for receiving values is the same whether the values are delivered synchronously or asynchronously. Because setup and teardown logic are both handled by the observable, your application code only needs to worry about subscribing to consume values, and when done, unsubscribing. Whether the stream was keystrokes, an HTTP response, or an interval timer, the interface for listening to values and stopping listening is the same. Because of these advantages, observables are used extensively within Angular, and for application development as well.
+
         - RxJS is a library for reactive programming using Observables, to make it easier to compose asynchronous or callback-based code. This project is a rewrite of Reactive-Extensions/RxJS with better performance, better modularity, better debuggable call stacks, while staying mostly backwards compatible, with some breaking changes that reduce the API surface
 
         - RxJS is a library for composing asynchronous and event-based programs by using observable sequences. It provides one core type, the Observable, satellite types (Observer, Schedulers, Subjects) and operators inspired by Array methods (map, filter, reduce, every, etc) to allow handling asynchronous events as collections.
@@ -201,8 +203,6 @@ RxJS In Practice Course Notes:
                 </mat-tab-group>
 
             </div>
-
-
 
 
         - Building Components with RxJs - Reactive Design
@@ -816,10 +816,10 @@ RxJS In Practice Course Notes:
 
         - •	Example with BehaviorSubject
                 o	yeah so every time we click to open a menu, the click event should call a method that takes the MenuType.SelectedMenu, (MenuType store in TS Enum, were each value represents a different component on the side menu), then in that method the subject.nex(selectedMenu) should be called
-                o	onces the .next fires, every subscriber to the subject will immediatley get that selectedMenu value
+                o	onces the .next fires, every subscriber to the subject will immediately get that selectedMenu value
                 o	think we have only one subscriber, which is used in the html file, by using the async pipe
 
-        - •	BehaviourSubjects are a little different to subjects as  we can utilize a default / start value that we can show initially if it takes some time before the first values starts to arrive. We can inspect the latest emitted value and of course listen to everything that has been emitted. They should be set to private as as follows ‘private _currentOpenMenu$ = new BehaviourSubject<MenuType>(initial value here) and then call .next(value), then using the async pipe we can subscribe to and every subscriber will get that behaviour subject value. 
+        - •	BehaviorSubjects are a little different to subjects as  we can utilize a default / start value that we can show initially if it takes some time before the first values starts to arrive. We can inspect the latest emitted value and of course listen to everything that has been emitted. They should be set to private as as follows ‘private _currentOpenMenu$ = new BehaviorSubject<MenuType>(initial value here) and then call .next(value), then using the async pipe we can subscribe to and every subscriber will get that behaviour subject value. We set it to private as the behaviour subject is the one creating values, we then expose then values publicly with, this.currentOpenMenu$ = this._currentOpenMenu$.asObservable();
 
             o	Example
             // Component file	
