@@ -856,7 +856,7 @@ RxJS In Practice Course Notes:
 
         - •	The ReplaySubject is going to replay the complete observable, emitting all of the values emitted. It does not need to complete like the asyncSubject. A ReplaySubject is similar to a BehaviorSubject in that it can send old values to new subscribers, but it can also record a part of the Observable execution.
 
-        - The Course Store Pattern implemented in the tutorial video is a great example and use case of subject and Rxjs in general - refer to the store.service.ts file to see the implementation of the store. 
+        - The Course Store Pattern implemented in the tutorial video is a great example and use case of subject and Rxjs in general - refer to the store.service.ts file to see the implementation of the store. The store enables us to hold state within our application which can then be tapped into by other parts of the application by subscribing to the observable data in the store. By having a store we don't have to have multiple calls to the backend to retrieve data on each page load when moving around the application views. In most cases the stateless approach is sufficient but by having a store that stores stateful data we can improve performance.   
         
         - Force completion of long running observables using the 'First' & 'Take' Operators.
 
