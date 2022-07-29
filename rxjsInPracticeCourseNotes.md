@@ -821,18 +821,23 @@ RxJS In Practice Course Notes:
 
 
     RxJS Subjects & Custom Store Pattern:
-        - •	A Subject is a stream of data - it can have multiple subscribers which receive the data that is emitted from the subject. So every time the code says subject.next(data), the subscribers will receive the passed data. Subject: is equivalent to an EventEmitter, and the only way of multicasting a value or event to multiple Observers. Subject should be set to private to the part of the application that is emitting the data within the component. Public observables can then be used to use outside the component (like our example below).
+        - •	A Subject is a stream of data - it can have multiple subscribers which receive the data that is emitted from the subject. So every time the code says subject.next(data), the subscribers will receive the passed data. Subject: is equivalent to an EventEmitter, and the only way of multi-casting a value or event to multiple Observers. Subject should be set to private to the part of the application that is emitting the data within the component. Public observables can then be used to use outside the component (like our example below).
 
-        - •	Example with BehaviorSubject
-                o	yeah so every time we click to open a menu, the click event should call a method that takes the MenuType.SelectedMenu, (MenuType store in TS Enum, were each value represents a different component on the side menu), then in that method the subject.nex(selectedMenu) should be called
-                o	onces the .next fires, every subscriber to the subject will immediately get that selectedMenu value
-                o	think we have only one subscriber, which is used in the html file, by using the async pipe
+        - A Subject is like an Observable, but can multicast to many Observers. Subjects are like EventEmitters: they maintain a registry of many listeners. Every Subject is an Observable. Given a Subject, you can subscribe to it, providing an Observer, which will start receiving values normally. From the perspective of the Observer, it cannot tell whether the Observable execution is coming from a plain unicast Observable or a Subject.
 
-        - •	BehaviorSubjects are a little different to subjects as  we can utilize a default / start value that we can show initially if it takes some time before the first values starts to arrive. We can inspect the latest emitted value and of course listen to everything that has been emitted. They should be set to private as as follows ‘private _currentOpenMenu$ = new BehaviorSubject<MenuType>(initial value here) and then call .next(value), then using the async pipe we can subscribe to and every subscriber will get that behaviour subject value. We set it to private as the behaviour subject is the one creating values, we then expose then values publicly with, this.currentOpenMenu$ = this._currentOpenMenu$.asObservable();
+        - •	BehaviorSubjects are a little different to subjects as  we can utilize a default / start value that we can show initially if it takes some time before the first values starts to arrive. We can inspect the latest emitted value and of course listen to everything that has been emitted. One of the variants of Subjects is the BehaviorSubject, which has a notion of "the current value". It stores the latest value emitted to its consumers, and whenever a new Observer subscribes, it will immediately receive the "current value" from the BehaviorSubject.
 
-            o	Example
+        - BehaviorSubjects are useful for representing "values over time". For instance, an event stream of birthdays is a Subject, but the stream of a person's age would be a BehaviorSubject. They should be set to private as as follows ‘private _currentOpenMenu$ = new BehaviorSubject<MenuType>(initial value here) and then call .next(value), then using the async pipe we can subscribe to and every subscriber will get that behavior subject value. We set it to private as the behavior subject is the one creating values, we then expose then values publicly with, this.currentOpenMenu$ = this._currentOpenMenu$.asObservable();
+
+        - Example with BehaviorSubject
+            o	yeah so every time we click to open a menu, the click event should call a method that takes the MenuType.SelectedMenu, (MenuType store in TS Enum, were each value represents a different component on the side menu), then in that method the subject.nex(selectedMenu) should be called
+            o	onces the .next fires, every subscriber to the subject will immediately get that selectedMenu value
+            o	think we have only one subscriber, which is used in the html file, by using the async pipe
+
+        - BehaviorSubject Example:
+
             // Component file	
-            private _currentOpenMenu$ = new BehaviourSubject<MenuType>(intialValue)
+            private _currentOpenMenu$ = new BehaviorSubject<MenuType>(intialValue)
                 public currentOpenMenu$: Observable<MenuType>
                 constructor() {
                     this.currentOpenMenu$ = this._currentOpenMenu$.asObservable();
@@ -847,9 +852,9 @@ RxJS In Practice Course Notes:
                 <button click=”Toggle(MenuTypeValue)” [ngClass]=”currentOpenMenu === MenuTypeValue >select</button>
             </div>
 
-        - •	AsyncSubject is ideal for using with long running calculations that is emitting a lot of values over time. It then emits the last value emitted after calculating all off the emitted values and the subject is then complete.  
+        - •	AsyncSubject is ideal for using with long running calculations that is emitting a lot of values over time. It then emits the last value emitted after calculating all off the emitted values and the subject is then complete. The AsyncSubject is a variant where only the last value of the Observable execution is sent to its observers, and only when the execution completes. 
 
-        - •	The replaySubject is going to replay the complete observable, emitting all of the values emitted. It does not need to complete like the asyncSubject.
+        - •	The ReplaySubject is going to replay the complete observable, emitting all of the values emitted. It does not need to complete like the asyncSubject. A ReplaySubject is similar to a BehaviorSubject in that it can send old values to new subscribers, but it can also record a part of the Observable execution.
 
         - The Course Store Pattern implemented in the tutorial video is a great example and use case of subject and Rxjs in general - refer to the store.service.ts file to see the implementation of the store. 
         
