@@ -829,6 +829,8 @@ RxJS In Practice Course Notes:
 
         - BehaviorSubjects are useful for representing "values over time". For instance, an event stream of birthdays is a Subject, but the stream of a person's age would be a BehaviorSubject. They should be set to private as as follows ‘private _currentOpenMenu$ = new BehaviorSubject<MenuType>(initial value here) and then call .next(value), then using the async pipe we can subscribe to and every subscriber will get that behavior subject value. We set it to private as the behavior subject is the one creating values, we then expose then values publicly with, this.currentOpenMenu$ = this._currentOpenMenu$.asObservable();
 
+        - Subjects & BehaviorSubjects - Is a strategy we use them to emit values. For example, service with a subject is were we pass new values to the subject and multiple components can subscribe to get the emitted values from the subject. 
+
         - Example with BehaviorSubject
             o	yeah so every time we click to open a menu, the click event should call a method that takes the MenuType.SelectedMenu, (MenuType store in TS Enum, were each value represents a different component on the side menu), then in that method the subject.nex(selectedMenu) should be called
             o	onces the .next fires, every subscriber to the subject will immediately get that selectedMenu value
